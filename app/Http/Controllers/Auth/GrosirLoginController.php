@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class GrosirLoginController extends Controller
 {
@@ -13,6 +16,35 @@ class GrosirLoginController extends Controller
     public function index()
     {
       return view('authentication.login-grosir');
+    }
+
+    public function login(Request $request)
+    {
+         // Validasi data yang diterima dari form login
+    $validatedData = $request->validate([
+        'username' => 'required|max:255',
+        'password' => 'required|min:8',
+      ], [
+        'username.required' => 'Nama pengguna wajib diisi.',
+        'username.max' => 'Nama pengguna harus tidak boleh lebih dari 255 karakter.',
+        'password.required' => 'Kata sandi wajib diisi.',
+        'password.min' => 'Kata sandi harus terdiri dari minimal 8 karakter.',
+      ]);
+  
+      // Mengambil pengguna berdasarkan username
+      $user = User::where('username', $request->username)->first();
+  
+      // Memeriksa apakah pengguna ditemukan dan password cocok
+      if (!$user || !Hash::check($request->password, $user->password)) {
+        // Jika tidak ditemukan atau password tidak cocok, redirect kembali dengan pesan error
+        return redirect()->route('grosir.login')->with('error', 'Username atau password salah');
+      }
+  
+      // Jika pengguna ditemukan dan password cocok, login pengguna
+      Auth::login($user);
+  
+      // Redirect ke halaman home setelah berhasil login
+      return redirect()->route('home-grosir');
     }
 
     /**

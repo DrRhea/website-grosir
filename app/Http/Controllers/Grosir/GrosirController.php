@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Grosir;
 
-use App\Http\Controllers\Controller;
 use App\Models\Grosir;
+use App\Models\Produk;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class GrosirController extends Controller
 {
@@ -21,7 +22,12 @@ class GrosirController extends Controller
 
       return view('grosir.form-grosir');
     }
-
+    
+    public function home()
+    {
+        $produks = Produk::all(); // Mengambil semua produk dari database
+        return view('home-grosir', compact('produks')); // Mengirim data produk ke view
+    }
     /**
      * Show the form for creating a new resource.
      */

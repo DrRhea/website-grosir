@@ -49,7 +49,7 @@ class GrosirRegisterController extends Controller
 
       Auth::login($user);
 
-      return redirect()->route('grosir.form-grosir');
+      return redirect()->route('grosir.form');
     }
 
     /**
