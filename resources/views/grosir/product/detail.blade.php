@@ -2,8 +2,7 @@
 <html lang="en" class="h-full bg-gray-50">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Aplikasi Grosir</title>
 
@@ -20,11 +19,11 @@
     <div class="relative isolate pt-14">
 
       <div x-data="{ open: false }" @keydown.window.escape="open = false" class="bg-white">
-        <main class="mx-auto mt-8 max-w-2xl px-4 sm:pb-20 sm:px-6 lg:max-w-7xl lg:px-8">
-          <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
+        <main class="max-w-2xl px-4 mx-auto mt-8 sm:pb-20 sm:px-6 lg:max-w-7xl lg:px-8">
+          <div class="lg:grid lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-span-5 lg:col-start-8">
               @if (session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <div class="relative px-4 py-3 mb-4 text-green-700 bg-green-100 border border-green-400 rounded" role="alert">
                   <strong class="font-bold">Sukses!</strong>
                   <span class="block sm:inline">{{ session('success') }}</span>
                 </div>
@@ -39,19 +38,18 @@
               </div>
             </div>
 
-
             <!-- Gambar -->
             <div class="mt-8 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
               <!-- Tombol Kembali -->
               <div class="mt-4 lg:col-span-7 lg:col-start-1 lg:row-span-3 lg:row-start-1 lg:mt-0">
-                <a href="/grosir/produk" class="inline-flex items-center px-4 py-2 text-sm font-semibold text-indigo-500 border-indigo-500 border-2 rounded-md shadow-sm hover:border-indigo-700 hover:text-indigo-700 duration-150">
+                <a href="/grosir/produk" class="inline-flex items-center px-4 py-2 text-sm font-semibold text-indigo-500 duration-150 border-2 border-indigo-500 rounded-md shadow-sm hover:border-indigo-700 hover:text-indigo-700">
                   &larr; Kembali
                 </a>
               </div>
               <h2 class="sr-only">Images</h2>
 
               <div class="grid grid-cols-1 lg:gap-8">
-                <img src="{{ asset($product->foto_produk) }}" alt="Back of women's Basic Tee in black." class="lg:col-span-2 lg:row-span-2 rounded-lg">
+                <img src="{{ asset($product->foto_produk) }}" alt="{{ ucwords($product->nama_produk) }}" class="rounded-lg lg:col-span-2 lg:row-span-2">
               </div>
             </div>
 
@@ -61,17 +59,17 @@
 
                 <input type="hidden" value="{{ $product->id }}" name="id_produk">
 
-                <div class="grid grid-cols-3 gap-8 items-center">
+                <div class="grid items-center grid-cols-3 gap-8">
                   <div class="relative rounded-md shadow-sm">
-                    <input type="text" name="qty" id="qty" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency">
-                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                    <input type="number" name="qty" id="qty" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency" min="1">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <span class="text-gray-500 sm:text-sm" id="price-currency">Butir</span>
                     </div>
                   </div>
                   <div class="flex gap-4">
-                    <span class="text-gray-300 select-none mr-2">|</span>
+                    <span class="mr-2 text-gray-300 select-none">|</span>
                     <a href="{{ route('grosir.keranjang') }}">
-                      <svg class="fill-gray-900 hover:fill-gray-500 duration-150" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+                      <svg class="duration-150 fill-gray-900 hover:fill-gray-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
                     </a>
                     @if(!$wishlist)
                     <button type="button" id="wishlist-button-add">
@@ -91,12 +89,12 @@
                 @enderror
 
                 <!-- Tombol Keranjang -->
-                <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <button type="submit" class="flex items-center justify-center w-full px-8 py-3 mt-4 text-base font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   + Keranjang
                 </button>
 
                 <!-- Tombol Beli Sekarang -->
-                <a href="{{ route('grosir.produk.beli-sekarang', ['nama_produk' => Str::slug($product->nama_produk)]) }}" class="mt-4 flex w-full items-center justify-center rounded-md border border-indigo-600 bg-transparent px-8 py-3 text-base font-medium text-indigo-600 hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <a href="{{ route('grosir.produk.beli-sekarang', ['nama_produk' => Str::slug($product->nama_produk)]) }}" class="flex items-center justify-center w-full px-8 py-3 mt-4 text-base font-medium text-indigo-600 bg-transparent border border-indigo-600 rounded-md hover:bg-indigo-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   Beli Sekarang
                 </a>
               </form>
@@ -108,43 +106,44 @@
                   <input type="hidden" name="id_produk" value="{{ $product->id }}">
                 </form>
               @else
-                <form id="wishlist-form-remove" method="POST" action="{{ route('grosir.produk.wishlist.remove') }}" style="display: none;">
-                  @csrf
-                  @method('DELETE')
-                  <input type="hidden" name="id" value="{{ $wishlist->id }}">
-                </form>
+              <form id="wishlist-form-remove" method="POST" action="{{ route('grosir.produk.wishlist.remove') }}" style="display: none;">
+                @csrf
+                @method('DELETE')
+                <input type="hidden" name="id_produk" value="{{ $wishlist->id_produk }}">
+            </form>
+            
               @endif
 
               <!-- Detail Produk -->
               <div class="mt-10">
                 <h2 class="text-sm font-medium text-gray-900">Deskripsi</h2>
 
-                <div class="prose prose-sm mt-4 text-gray-500">
+                <div class="mt-4 prose-sm prose text-gray-500">
                   <p>
                     {{ $product->deskripsi_produk }}
                   </p>
                 </div>
               </div>
 
-              <div class="mt-8 border-t border-gray-200 pt-8">
+              <div class="pt-8 mt-8 border-t border-gray-200">
                 <h2 class="text-sm font-medium text-gray-900">Informasi Telur</h2>
 
-                <div class="prose prose-sm mt-4 text-gray-500">
-                  <ul role="list" class="list-disc list-inside space-y-2">
+                <div class="mt-4 prose-sm prose text-gray-500">
+                  <ul role="list" class="space-y-2 list-disc list-inside">
                     <li class="flex items-start">
-                      <span class="w-4 h-4 bg-gray-300 rounded-full mr-2"></span>
+                      <span class="w-4 h-4 mr-2 bg-gray-300 rounded-full"></span>
                       Hanya menggunakan telur segar dari peternakan terpercaya
                     </li>
                     <li class="flex items-start">
-                      <span class="w-4 h-4 bg-gray-300 rounded-full mr-2"></span>
+                      <span class="w-4 h-4 mr-2 bg-gray-300 rounded-full"></span>
                       Dikemas dengan standar kebersihan tinggi
                     </li>
                     <li class="flex items-start">
-                      <span class="w-4 h-4 bg-gray-300 rounded-full mr-2"></span>
+                      <span class="w-4 h-4 mr-2 bg-gray-300 rounded-full"></span>
                       Periksa tanggal kedaluwarsa sebelum digunakan
                     </li>
                     <li class="flex items-start">
-                      <span class="w-4 h-4 bg-gray-300 rounded-full mr-2"></span>
+                      <span class="w-4 h-4 mr-2 bg-gray-300 rounded-full"></span>
                       Simpan di kulkas pada suhu 4°C atau lebih rendah
                     </li>
                   </ul>
@@ -156,18 +155,18 @@
                 <h2 id="policies-heading" class="sr-only">Informasi Kebijakan</h2>
 
                 <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-                  <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                  <div class="p-6 text-center border border-gray-200 rounded-lg bg-gray-50">
                     <dt>
-                      <svg class="mx-auto h-6 w-6 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <svg class="flex-shrink-0 w-6 h-6 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 8.25a3.75 3.75 0 117.5 0v1.5a3.75 3.75 0 117.5 0v-1.5a3.75 3.75 0 113.75 3.75h-1.5a3.75 3.75 0 00-3.75-3.75v1.5a3.75 3.75 0 00-3.75 3.75h-1.5A3.75 3.75 0 015 8.25v-1.5z"></path>
                       </svg>
                       <span class="mt-4 text-sm font-medium text-gray-900">Pengiriman Segar</span>
                     </dt>
                     <dd class="mt-1 text-sm text-gray-500">Kirimkan telur dalam kondisi segar langsung dari peternakan</dd>
                   </div>
-                  <div class="rounded-lg border border-gray-200 bg-gray-50 p-6 text-center">
+                  <div class="p-6 text-center border border-gray-200 rounded-lg bg-gray-50">
                     <dt>
-                      <svg class="mx-auto h-6 w-6 flex-shrink-0 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <svg class="flex-shrink-0 w-6 h-6 mx-auto text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 4.5h18v15H3V4.5zM5.25 7.5v2.25h13.5V7.5H5.25zm0 3.75v2.25h13.5v-2.25H5.25zm0 3.75v2.25h13.5v-2.25H5.25z"></path>
                       </svg>
                       <span class="mt-4 text-sm font-medium text-gray-900">Penyimpanan yang Tepat</span>
@@ -179,11 +178,8 @@
             </div>
           </div>
         </main>
-
       </div>
-
     </div>
-
   </div>
 </div>
 

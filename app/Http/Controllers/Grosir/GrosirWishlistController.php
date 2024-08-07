@@ -10,28 +10,48 @@ use Illuminate\Support\Facades\Auth;
 
 class GrosirWishlistController extends Controller
 {
-  public function index() {
+    public function index()
+    {
+        $grosir = Grosir::where('id_user', Auth::id())->first();
+        $wishlists = Wishlist::where('id_grosir', $grosir->id)->get();
+
+        $wishlistsWithProducts = $wishlists->map(function ($wishlist) {
+            return [
+                'wishlist' => $wishlist,
+                'product' => $wishlist->product
+            ];
+        });
+
+        return view('grosir.wishlist', compact('wishlistsWithProducts'));
+    }
+
+    public function add(Request $request)
+    {
+        Wishlist::updateOrCreate([
+            'id_grosir' => $request->id_grosir,
+            'id_produk' => $request->id_produk,
+        ]);
+
+        return redirect()->back()->with('success', 'Produk berhasil ditambahkan ke wishlist!');
+    }
+
+    public function remove(Request $request)
+{
     $grosir = Grosir::where('id_user', Auth::id())->first();
-    $wishlists = Wishlist::where('id_grosir', $grosir->id)->get();
+    if (!$grosir) {
+        return redirect()->back()->with('error', 'Grosir tidak ditemukan.');
+    }
 
-    return view('grosir.wishlist', compact('wishlists'));
-  }
+    $wishlist = Wishlist::where('id_grosir', $grosir->id)
+        ->where('id_produk', $request->id_produk)
+        ->first();
+        
+    if ($wishlist) {
+        $wishlist->delete();
+        return redirect()->back()->with('success', 'Produk berhasil dihapus dari wishlist!');
+    }
 
-  public function add(Request $request)
-  {
-    WishList::create([
-      'id_grosir' => $request->id_grosir,
-      'id_produk' => $request->id_produk,
-    ]);
+    return redirect()->back()->with('error', 'Produk tidak ditemukan di wishlist.');
+}
 
-    return redirect()->back();
-  }
-
-  public function remove(Request $request)
-  {
-    $wishlist = Wishlist::find($request->id);
-    $wishlist->delete();
-
-    return redirect()->back();
-  }
 }
