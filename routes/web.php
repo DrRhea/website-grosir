@@ -7,6 +7,7 @@
   use App\Http\Controllers\Auth\GrosirLoginController;
   use App\Http\Controllers\Auth\GrosirRegisterController;
   use App\Http\Controllers\Grosir\GrosirController;
+  use App\Http\Controllers\Grosir\GrosirKeranjangController;
   use App\Http\Controllers\Grosir\GrosirProdukController;
   use App\Http\Controllers\Grosir\GrosirProfileController;
   use App\Http\Controllers\Grosir\GrosirTentangKamiController;
@@ -64,7 +65,11 @@ Route::middleware(['auth', 'grosir'])->prefix('grosir')->group(function () {
   Route::get('/produk/beli-sekarang/{nama_produk}', [GrosirBeliSekarangController::class, 'index'])->name('grosir.produk.beli-sekarang');
   Route::get('/tentang', [GrosirTentangKamiController::class, 'index'])->name('grosir.tentang.index');
 
+  Route::get('/produk/keranjang', [GrosirKeranjangController::class, 'index'])->name('grosir.keranjang');
+  Route::post('/produk/keranjang/add', [GrosirKeranjangController::class, 'store'])->name('grosir.keranjang.add');
 
+
+  Route::get('/produk/wishlist', [GrosirWishlistController::class, 'index'])->name('grosir.produk.wishlist');
   Route::post('/produk/wishlist/add', [GrosirWishlistController::class, 'add'])->name('grosir.produk.wishlist.add');
   Route::delete('/produk/wishlist/remove', [GrosirWishlistController::class, 'remove'])->name('grosir.produk.wishlist.remove');
 

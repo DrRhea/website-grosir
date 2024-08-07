@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class GrosirWishlistController extends Controller
 {
+  public function index() {
+    $wishlists = Wishlist::all();
+
+    return view('grosir.wishlist', compact('wishlists'));
+  }
+
   public function add(Request $request)
   {
     WishList::create([

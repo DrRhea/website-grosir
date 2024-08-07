@@ -21,9 +21,9 @@
       <a href="/grosir/produk" class="text-sm font-semibold leading-6
       {{ Str::startsWith(request()->path(), 'grosir/produk') == 'grosir/produk' ? 'text-indigo-500' : 'text-gray-900'}}
       ">Produk</a>
-      <a href="/grosir/riwayat" class="text-sm font-semibold leading-6
+      <a href="/grosir/pesanan" class="text-sm font-semibold leading-6
       {{ Str::startsWith(request()->path(), 'grosir/riwayat') == 'grosir/produk' ? 'text-indigo-500' : 'text-gray-900'}}
-      ">Riwayat Pembelian</a>
+      ">Pesanan Saya</a>
       <a href="/grosir/tentang" class="text-sm font-semibold leading-6
       {{ request()->path() == 'grosir/tentang' ? 'text-indigo-500' : 'text-gray-900'}}
       ">Tentang Kami</a>

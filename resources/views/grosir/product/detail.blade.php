@@ -23,6 +23,12 @@
         <main class="mx-auto mt-8 max-w-2xl px-4 sm:pb-20 sm:px-6 lg:max-w-7xl lg:px-8">
           <div class="lg:grid lg:auto-rows-min lg:grid-cols-12 lg:gap-x-8">
             <div class="lg:col-span-5 lg:col-start-8">
+              @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                  <strong class="font-bold">Sukses!</strong>
+                  <span class="block sm:inline">{{ session('success') }}</span>
+                </div>
+              @endif
               <div class="flex justify-between">
                 <h1 class="text-xl font-medium text-gray-900">
                   {{ ucwords($product->nama_produk) }}
@@ -50,17 +56,23 @@
             </div>
 
             <div class="mt-8 lg:col-span-5">
-              <form method="POST" action="">
+              <form method="POST" action="{{ route('grosir.keranjang.add') }}">
                 @csrf
+
+                <input type="hidden" value="{{ $product->id }}" name="id_produk">
+
                 <div class="grid grid-cols-3 gap-8 items-center">
                   <div class="relative rounded-md shadow-sm">
-                    <input type="text" name="price" id="price" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency">
+                    <input type="text" name="qty" id="qty" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency">
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                       <span class="text-gray-500 sm:text-sm" id="price-currency">Butir</span>
                     </div>
                   </div>
                   <div class="flex gap-4">
                     <span class="text-gray-300 select-none mr-2">|</span>
+                    <a href="{{ route('grosir.keranjang') }}">
+                      <svg class="fill-gray-900 hover:fill-gray-500 duration-150" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="transform: ;msFilter:;"><path d="M21 4H2v2h2.3l3.28 9a3 3 0 0 0 2.82 2H19v-2h-8.6a1 1 0 0 1-.94-.66L9 13h9.28a2 2 0 0 0 1.92-1.45L22 5.27A1 1 0 0 0 21.27 4 .84.84 0 0 0 21 4zm-2.75 7h-10L6.43 6h13.24z"></path><circle cx="10.5" cy="19.5" r="1.5"></circle><circle cx="16.5" cy="19.5" r="1.5"></circle></svg>
+                    </a>
                     @if(!$wishlist)
                     <button type="button" id="wishlist-button-add">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
@@ -74,8 +86,12 @@
                     @endif
                   </div>
                 </div>
+                @error('qty')
+                  <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+
                 <!-- Tombol Keranjang -->
-                <button type="submit" class="mt-8 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <button type="submit" class="mt-4 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                   + Keranjang
                 </button>
 
@@ -183,6 +199,11 @@
           document.getElementById('wishlist-form-remove').submit();
       });
     @endif
+
+    document.getElementById('qty').addEventListener('input', function (event) {
+        const qtyInput = event.target;
+        qtyInput.value = qtyInput.value.replace(/[^0-9]/g, '');
+    });
 </script>
 </body>
 </html>

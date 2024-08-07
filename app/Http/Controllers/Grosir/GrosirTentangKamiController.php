@@ -12,7 +12,7 @@ class GrosirTentangKamiController extends Controller
      */
     public function index()
     {
-        //
+        return view('grosir.tentangkami');
     }
 
     /**
