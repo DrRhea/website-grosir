@@ -13,6 +13,7 @@
   use App\Http\Controllers\Grosir\GrosirTentangKamiController;
   use App\Http\Controllers\Grosir\GrosirWishlistController;
   use App\Http\Controllers\GrosirBeliSekarangController;
+  use App\Http\Controllers\GrosirTransaksiController;
   use Illuminate\Support\Facades\Auth;
   use Illuminate\Support\Facades\Route;
 
@@ -65,9 +66,10 @@ Route::middleware(['auth', 'grosir'])->prefix('grosir')->group(function () {
   Route::get('/produk/beli-sekarang/{nama_produk}', [GrosirBeliSekarangController::class, 'index'])->name('grosir.produk.beli-sekarang');
   Route::get('/tentang', [GrosirTentangKamiController::class, 'index'])->name('grosir.tentang.index');
 
+  Route::post('/transaksi', [GrosirTransaksiController::class, 'store'])->name('grosir.transaksi.store');
+
   Route::get('/produk/keranjang', [GrosirKeranjangController::class, 'index'])->name('grosir.keranjang');
   Route::post('/produk/keranjang/add', [GrosirKeranjangController::class, 'store'])->name('grosir.keranjang.add');
-
 
   Route::get('/produk/wishlist', [GrosirWishlistController::class, 'index'])->name('grosir.produk.wishlist');
   Route::post('/produk/wishlist/add', [GrosirWishlistController::class, 'add'])->name('grosir.produk.wishlist.add');
