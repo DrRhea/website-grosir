@@ -18,7 +18,6 @@
     @include('components.grosir.navbar')
 
     <div class="relative isolate pt-14">
-      
     </div>
   </div>
 </div>
