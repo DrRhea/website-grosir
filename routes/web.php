@@ -23,7 +23,7 @@
   });
 
   Route::middleware('guest')->group(function () {
-  Route::get('/agen/masuk', [AgenLoginController::class, 'index'])->name('agen.login');
+  Route::get('/agen/masuk', [AgenLoginController::class, 'index'])->name('login');
   Route::post('/agen/masuk', [AgenLoginController::class, 'login']);
 
   Route::get('/grosir/masuk', [GrosirLoginController::class, 'index'])->name('grosir.login');
