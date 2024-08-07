@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Grosir;
 use App\Http\Controllers\Controller;
 use App\Models\Grosir;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GrosirController extends Controller
 {
@@ -13,14 +14,23 @@ class GrosirController extends Controller
      */
     public function index()
     {
-        //
+      return view('grosir.home');
     }
 
     public function form()
     {
+      $user = Auth::user();
+      $grosir = Grosir::where('id_user', $user->id)->first();
 
-      return view('grosir.form-grosir');
+      if ($grosir == null) {
+        return view('grosir.form-grosir');
+      } else {
+        return view('grosir.home');
+      }
+
     }
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -44,7 +44,7 @@ class AgenLoginController extends Controller
     Auth::login($user);
 
     // Redirect ke halaman home setelah berhasil login
-    return redirect()->route('home');
+    return redirect()->route('agen.index');
   }
 
     /**

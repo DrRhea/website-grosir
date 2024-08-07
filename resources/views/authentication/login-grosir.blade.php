@@ -20,7 +20,7 @@
 
       <div class="mt-10">
         <div>
-          <form action="#" method="POST" class="space-y-6">
+          <form action="/grosir/masuk" method="POST" class="space-y-6">
 
             @csrf
 

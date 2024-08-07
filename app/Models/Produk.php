@@ -15,6 +15,10 @@ class Produk extends Model
       'deskripsi_produk',
       'harga_produk',
       'stok_produk',
+      'stok_realtime_produk',
+      'rop_produk',
+      'lead_time_produk',
+      'safety_stock_produk',
       'foto_produk',
     ];
 }

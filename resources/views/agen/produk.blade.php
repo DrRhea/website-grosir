@@ -102,13 +102,15 @@
                           <dd class="mt-1 truncate text-gray-700">{{ $produk->deskripsi_produk }}</dd>
                           <dt class="sr-only sm:hidden">Harga Produk</dt>
                           <dd class="mt-1 truncate text-gray-500 md:hidden">
-                            Rp{{ number_format($produk->harga_produk, 0, ',', '.') }}</dd>
+                            Rp{{ number_format($produk->harga_produk, 0, ',', '. ') }}</dd>
                           <dt class="sr-only sm:hidden">Stok Produk</dt>
                           <dd class="mt-1 truncate text-gray-500 lg:hidden">{{ $produk->stok_produk }} Butir</dd>
                         </dl>
                       </td>
-                      <td class="hidden px-3 py-4 text-sm text-gray-500 xl:table-cell">
-                        {{ $produk->deskripsi_produk }}
+                      <td class="hidden px-3 py-4 text-sm text-gray-500 w-1/4 xl:table-cell">
+                        <span class="line-clamp-2">
+                          {{ $produk->deskripsi_produk }}
+                        </span>
                       </td>
                       <td class="hidden px-3 py-4 text-sm text-gray-500 lg:table-cell">
                         Rp{{ number_format($produk->harga_produk, 0, ',', '.') }}
@@ -126,7 +128,7 @@
                           </span>
                         @elseif($produk->status == 'tidak tersedia')
                           <span class="bg-red-100 text-red-800 text-sm font-medium me-2 px-2.5 py-2 rounded ">
-                            {{ ucfirst(strtolower($produk->status)) }}
+                            {{ ucwords(strtolower($produk->status)) }}
                           </span>
                         @endif
 

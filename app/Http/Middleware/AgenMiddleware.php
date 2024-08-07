@@ -17,7 +17,7 @@ class AgenMiddleware
     public function handle(Request $request, Closure $next): Response
     {
       if (Auth::user()->role != 'agen') {
-        return redirect()->route('grosir');
+        return redirect()->route('grosir.index');
       }
         return $next($request);
     }

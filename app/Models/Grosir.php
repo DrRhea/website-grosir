@@ -16,4 +16,9 @@ class Grosir extends Model
       'alamat_grosir',
       'foto_grosir',
     ];
+
+  public function user()
+  {
+    return $this->belongsTo(User::class, 'id_user');
+  }
 }

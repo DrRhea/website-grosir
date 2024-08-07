@@ -14,11 +14,11 @@ class AgenSeeder extends Seeder
     public function run(): void
     {
       Agen::create([
-        'id_user' => '1',
+        'id_user' => 1,
         'nama_agen' => 'agen',
         'nomor_telefon_agen' => '081234567890',
         'alamat_agen' => 'Jl. Haji Mutholib no. 32',
-        'foto_agen' => 'default.jpg',
+        'foto_agen' => '/upload/foto_agen/agen.jpg',
       ]);
     }
 }

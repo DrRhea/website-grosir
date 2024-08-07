@@ -17,7 +17,7 @@ class GrosirMiddleware
     public function handle(Request $request, Closure $next): Response
     {
       if (Auth::user()->role != 'grosir') {
-        return redirect()->route('agen');
+        return redirect()->route('agen.index');
       }
 
         return $next($request);

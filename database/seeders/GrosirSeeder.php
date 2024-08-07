@@ -14,7 +14,7 @@ class GrosirSeeder extends Seeder
     public function run(): void
     {
         Grosir::create([
-          'id_user' => '2',
+          'id_user' => 2,
           'nama_grosir' => 'grosir',
           'nomor_telefon_grosir' => '081234567890',
           'alamat_grosir' => 'Jl. Haji Mubarok no. 23',

@@ -16,8 +16,12 @@ return new class extends Migration
             $table->foreignId('id_agen')->constrained('agens');
             $table->string('nama_produk')->unique();
             $table->longText('deskripsi_produk');
-            $table->integer('stok_produk');
-            $table->decimal('harga_produk', 8, 2);
+            $table->integer('stok_produk')->default(0);
+            $table->integer('stok_realtime_produk')->default(0);
+            $table->integer('rop_produk')->default(0);
+            $table->integer('lead_time_produk')->default(0);
+            $table->integer('safety_stock_produk')->default(0);
+            $table->integer('harga_produk')->default(0);
             $table->string('foto_produk')->nullable();
             $table->enum('status', ['tersedia', 'tidak tersedia'])->default('tersedia');
             $table->timestamps();

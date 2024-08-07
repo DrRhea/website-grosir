@@ -96,20 +96,24 @@
                         </div>
                       </div>
 
-                      <div class="sm:col-span-full grid grid-cols-2 gap-4">
+                      <div class="sm:col-span-full grid grid-cols-3 gap-4">
                         <div>
-                          <label for="harga_produk" class="block text-sm font-medium leading-6 text-gray-900">Harga Produk</label>
+                          <label for="harga_produk" class="block text-sm font-medium leading-6 text-gray-900">Harga Produk
+                            <span class="text-gray-400 select-none">(IDR)</span>
+                          </label>
                           <div class="mt-2">
-                            <input id="harga_produk" name="harga_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4">
+                            <input id="harga_produk" name="harga_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="0">
                               @error('harga_produk')
                                 <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                               @enderror
                           </div>
                         </div>
                         <div>
-                          <label for="stok_produk" class="block text-sm font-medium leading-6 text-gray-900">Stok Produk</label>
+                          <label for="stok_produk" class="block text-sm font-medium leading-6 text-gray-900">Stok Produk
+                            <span class="text-gray-400 select-none">(Butir)</span>
+                          </label>
                           <div class="mt-2">
-                            <input id="stok_produk" name="stok_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4">
+                            <input id="stok_produk" name="stok_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="0">
                             @error('stok_produk')
                               <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
@@ -117,11 +121,44 @@
                         </div>
                         <div>
                           <label for="tanggal_kedaluwarsa" class="block text-sm font-medium leading-6 text-gray-900">Lama Kedaluwarsa
-                            <span class="text-gray-400">(Jumlah Hari)</span>
+                            <span class="text-gray-400 select-none">(Jumlah Hari)</span>
                           </label>
                           <div class="mt-2">
-                            <input id="tanggal_kedaluwarsa" name="tanggal_kedaluwarsa" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4">
+                            <input id="tanggal_kedaluwarsa" name="tanggal_kedaluwarsa" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="Contoh: 30">
                             @error('tanggal_kedaluwarsa')
+                              <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="sm:col-span-full grid grid-cols-3 gap-4">
+                        <div>
+                          <label for="rop_produk" class="block text-sm font-medium leading-6 text-gray-900">ROP
+                          </label>
+                          <div class="mt-2">
+                            <input id="rop_produk" name="rop_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="0">
+                              @error('rop_produk')
+                                <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                              @enderror
+                          </div>
+                        </div>
+                        <div>
+                          <label for="lead_time_produk" class="block text-sm font-medium leading-6 text-gray-900">Lead Time
+                          </label>
+                          <div class="mt-2">
+                            <input id="lead_time_produk" name="lead_time_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="0">
+                            @error('lead_time_produk')
+                              <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                          </div>
+                        </div>
+                        <div>
+                          <label for="safety_stock_produk" class="block text-sm font-medium leading-6 text-gray-900">Safety Stock
+                          </label>
+                          <div class="mt-2">
+                            <input id="safety_stock_produk" name="safety_stock_produk" type="text" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-4" placeholder="0">
+                            @error('safety_stock_produk')
                               <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                             @enderror
                           </div>
@@ -171,16 +208,28 @@
 
 <script>
     document.getElementById('harga_produk').addEventListener('input', function (event) {
-        const nimInput = event.target;
-        nimInput.value = nimInput.value.replace(/[^0-9]/g, '');
+        const hargaProdukInput = event.target;
+        hargaProdukInput.value = hargaProdukInput.value.replace(/[^0-9]/g, '');
     });
     document.getElementById('stok_produk').addEventListener('input', function (event) {
-        const nimInput = event.target;
-        nimInput.value = nimInput.value.replace(/[^0-9]/g, '');
+        const stokProdukInput = event.target;
+        stokProdukInput.value = stokProdukInput.value.replace(/[^0-9]/g, '');
     });
     document.getElementById('tanggal_kedaluwarsa').addEventListener('input', function (event) {
-        const nimInput = event.target;
-        nimInput.value = nimInput.value.replace(/[^0-9]/g, '');
+        const tanggalKedaluwarsaInput = event.target;
+        tanggalKedaluwarsaInput.value = tanggalKedaluwarsaInput.value.replace(/[^0-9]/g, '');
+    });
+    document.getElementById('rop_produk').addEventListener('input', function (event) {
+        const ropProdukInput = event.target;
+        ropProdukInput.value = ropProdukInput.value.replace(/[^0-9]/g, '');
+    });
+    document.getElementById('lead_time_produk').addEventListener('input', function (event) {
+        const leadTimeProdukInput = event.target;
+        leadTimeProdukInput.value = leadTimeProdukInput.value.replace(/[^0-9]/g, '');
+    });
+    document.getElementById('safety_stock_produk').addEventListener('input', function (event) {
+        const safetyStockProdukInput = event.target;
+        safetyStockProdukInput.value = safetyStockProdukInput.value.replace(/[^0-9]/g, '');
     });
 </script>
 </body>
