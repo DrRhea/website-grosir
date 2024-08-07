@@ -22,7 +22,8 @@
         <div class="mx-auto max-w-2xl px-4 pb-24 pt-16 sm:px-6 lg:max-w-7xl lg:px-8">
           <h2 class="sr-only">Checkout</h2>
 
-          <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16" @submit.prevent="submitOrder">
+          <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
+                method="POST" action="{{ route('grosir.transaksi.store') }}" enctype="multipart/form-data">
             <div>
               <div>
                 <h2 class="text-lg font-medium text-gray-900">Informasi Penerima</h2>
