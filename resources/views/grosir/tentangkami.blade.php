@@ -57,7 +57,7 @@
               </svg>
               <div class="text-base leading-7">
                 <h3 class="font-semibold text-white">Kontak Kami</h3>
-                <p class="mt-2 text-gray-300">Hubungi kami di 0812-3456-7890 atau email ke agenTelur@gmail.com untuk informasi lebih lanjut dan pemesanan.</p>
+                <p class="mt-2 text-gray-300">Hubungi kami di 0812-3456-7890 atau email ke agentelur@gmail.com untuk informasi lebih lanjut dan pemesanan.</p>
               </div>
             </div>
           </div>
