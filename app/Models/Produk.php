@@ -21,4 +21,7 @@ class Produk extends Model
       'safety_stock_produk',
       'foto_produk',
     ];
+
+
+
 }

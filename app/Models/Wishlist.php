@@ -13,4 +13,10 @@ class Wishlist extends Model
     'id_grosir',
     'id_produk',
   ];
+  // Wishlist.php
+public function product()
+{
+    return $this->belongsTo(Produk::class, 'id_produk');
+}
+
 }
