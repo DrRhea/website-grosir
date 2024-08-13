@@ -61,7 +61,7 @@
 
                 <div class="grid items-center grid-cols-3 gap-8">
                   <div class="relative rounded-md shadow-sm">
-                    <input type="number" name="qty" id="qty" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency" min="1">
+                    <input type="text" name="qty" id="qty" class="block w-full rounded-md border-0 py-1.5 pl-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0" aria-describedby="price-currency" min="1">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                       <span class="text-gray-500 sm:text-sm" id="price-currency">Butir</span>
                     </div>

@@ -14,4 +14,9 @@ class Keranjang extends Model
     'id_produk',
     'qty',
   ];
+
+  public function produk()
+  {
+    return $this->belongsTo(Produk::class, 'id_produk');
+  }
 }

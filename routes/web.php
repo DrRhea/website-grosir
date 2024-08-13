@@ -68,10 +68,10 @@ Route::middleware(['auth', 'grosir'])->prefix('grosir')->group(function () {
 
   Route::post('/transaksi', [GrosirTransaksiController::class, 'store'])->name('grosir.transaksi.store');
 
-  Route::get('/produk/keranjang', [GrosirKeranjangController::class, 'index'])->name('grosir.keranjang');
-  Route::post('/produk/keranjang/add', [GrosirKeranjangController::class, 'store'])->name('grosir.keranjang.add');
+  Route::get('/keranjang', [GrosirKeranjangController::class, 'index'])->name('grosir.keranjang');
+  Route::post('/keranjang/add', [GrosirKeranjangController::class, 'store'])->name('grosir.keranjang.add');
 
-    Route::get('/produk/wishlist', [GrosirWishlistController::class, 'index'])->name('grosir.produk.wishlist');
+    Route::get('/wishlist', [GrosirWishlistController::class, 'index'])->name('grosir.produk.wishlist');
     Route::post('/grosir/wishlist/add', [GrosirWishlistController::class, 'add'])->name('grosir.produk.wishlist.add');
     Route::delete('/grosir/wishlist/remove', [GrosirWishlistController::class, 'remove'])->name('grosir.produk.wishlist.remove');
   
