@@ -24,6 +24,7 @@
 
           <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
                 method="POST" action="{{ route('grosir.transaksi.store') }}" enctype="multipart/form-data">
+            @csrf
             <div>
               <div>
                 <h2 class="text-lg font-medium text-gray-900">Informasi Penerima</h2>

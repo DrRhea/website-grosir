@@ -12,9 +12,15 @@ class GrosirKeranjangController extends Controller
 {
   public function index() {
     $grosir = Grosir::where('id_user', Auth::id())->first();
-    $keranjangs = Keranjang::where('id_grosir', $grosir->id)->get();
+    $keranjangs = Keranjang::where('id_grosir', $grosir->id)->with('produk')->get();
 
-    return view('grosir.keranjang', compact('grosir', 'keranjangs'));
+    $subtotal = 0;
+
+    foreach($keranjangs as $keranjang) {
+      $subtotal += $keranjang->qty * $keranjang->produk->harga_produk;
+    }
+
+    return view('grosir.keranjang', compact('grosir', 'keranjangs', 'subtotal'));
   }
 
   public function store(Request $request)
