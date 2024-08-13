@@ -27,7 +27,7 @@
   Route::get('/agen/masuk', [AgenLoginController::class, 'index'])->name('agen.login');
   Route::post('/agen/masuk', [AgenLoginController::class, 'login']);
 
-  Route::get('/grosir/masuk', [GrosirLoginController::class, 'index'])->name('grosir.login');
+  Route::get('/grosir/masuk', [GrosirLoginController::class, 'index'])->name('login');
   Route::post('/grosir/masuk', [GrosirLoginController::class, 'login']);
 
   Route::get('/grosir/daftar', [GrosirRegisterController::class, 'index'])->name('grosir.register');
