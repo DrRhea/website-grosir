@@ -53,8 +53,8 @@
     Route::get('/produk/edit/{produk}', [AgenProdukController::class, 'edit'])->name('agen.produk.edit');
     Route::put('/produk/edit', [AgenProdukController::class, 'update']);
 
-    Route::get('/transaksi/telur-expired', [AgenTransaksiController::class, 'show_telur_expired'])->name('agen.produk.expired');
-    Route::get('/transaksi/grosir', [AgenTransaksiController::class, 'show_grosir'])->name('agen.grosir');
+    Route::get('/produk/telur-expired', [AgenTransaksiController::class, 'show_telur_expired'])->name('agen.produk.expired');
+    Route::get('/grosir', [AgenTransaksiController::class, 'show_grosir'])->name('agen.grosir');
 
   });
 
@@ -67,6 +67,8 @@ Route::middleware(['auth', 'grosir'])->prefix('grosir')->group(function () {
   Route::get('/tentang', [GrosirTentangKamiController::class, 'index'])->name('grosir.tentang.index');
 
   Route::post('/transaksi', [GrosirTransaksiController::class, 'store'])->name('grosir.transaksi.store');
+
+  Route::get('/pesanan', [GrosirTransaksiController::class, 'index'])->name('grosir.transaksi.index');
 
   Route::get('/keranjang', [GrosirKeranjangController::class, 'index'])->name('grosir.keranjang');
   Route::post('/keranjang/add', [GrosirKeranjangController::class, 'store'])->name('grosir.keranjang.add');

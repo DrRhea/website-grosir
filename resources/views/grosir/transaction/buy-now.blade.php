@@ -25,6 +25,11 @@
           <form class="lg:grid lg:grid-cols-2 lg:gap-x-12 xl:gap-x-16"
                 method="POST" action="{{ route('grosir.transaksi.store') }}" enctype="multipart/form-data">
             @csrf
+            @php
+              $grosir = \App\Models\Grosir::where('id_user', auth()->user()->id)->first();
+            @endphp
+            <input type="hidden" name="id_grosir" value="{{ $grosir->id }}">
+            <input type="hidden" name="id_produk" value="{{ $produk->id }}">
             <div>
               <div>
                 <h2 class="text-lg font-medium text-gray-900">Informasi Penerima</h2>
@@ -74,20 +79,32 @@
               <div class="mt-10 border-t border-gray-200 pt-10">
                 <h2 class="text-lg font-medium text-gray-900">Pengiriman</h2>
 
-
                 <fieldset class="mt-4 p-6 bg-gray-50 rounded-lg shadow-sm border border-gray-200">
-                  <legend class="sr-only">Jenis Pengiriman</legend>
-                  <div class="space-y-4 sm:flex sm:items-center sm:space-x-10 sm:space-y-0">
-                    <div class="flex items-center">
-                      <input id="darurat" x-model="jenisPengiriman" name="jenis_pengiriman" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" value="darurat">
-                      <label for="darurat" class="ml-3 block text-sm font-medium text-gray-900 hover:text-indigo-600">Darurat</label>
+                  <legend class="sr-only">Plan</legend>
+                  <div class="space-y-5">
+                    <div class="relative flex items-start">
+                      <div class="flex h-6 items-center">
+                        <input id="small" aria-describedby="small-description" name="jenis_pengiriman" type="radio" checked="" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="reguler">
+                      </div>
+                      <div class="ml-3 text-sm leading-6">
+                        <label for="small" class="font-medium text-gray-900">Reguler</label>
+                        <p id="small-description" class="text-gray-500">Rp20.000 - Estimasi 3 - 5 hari</p>
+                      </div>
                     </div>
-                    <div class="flex items-center">
-                      <input id="reguler" x-model="jenisPengiriman" name="jenis_pengiriman" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500" value="reguler">
-                      <label for="reguler" class="ml-3 block text-sm font-medium text-gray-900 hover:text-indigo-600">Reguler</label>
+                    <div class="relative flex items-start">
+                      <div class="flex h-6 items-center">
+                        <input id="medium" aria-describedby="medium-description" name="jenis_pengiriman" type="radio" class="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600" value="darurat">
+                      </div>
+                      <div class="ml-3 text-sm leading-6">
+                        <label for="medium" class="font-medium text-gray-900">Darurat</label>
+                        <p id="medium-description" class="text-gray-500">Rp50.000 - Estimasi 1 hari</p>
+                      </div>
                     </div>
                   </div>
                 </fieldset>
+                @error('jenis_pengiriman')
+                  <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
               </div>
 
               <!-- Payment -->
@@ -103,9 +120,12 @@
                 <div class="mt-6 grid grid-cols-4 gap-x-4 gap-y-6">
                   <div class="col-span-4">
                     <label for="file-input" class="px-2">Bukti Pembayaran</label>
-                    <input type="file" name="file-input" id="file-input" class="mt-4 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4">
+                    <input type="file" name="bukti_pembayaran" id="file-input" class="mt-4 block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none file:bg-gray-50 file:border-0 file:me-4 file:py-3 file:px-4" accept=".jpeg,.jpg,.png,.pdf">
                   </div>
                 </div>
+                  @error('bukti_pembayaran')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                  @enderror
               </div>
             </div>
 
@@ -141,9 +161,12 @@
 
                         <div class="ml-4">
                           <label for="quantity" class="sr-only">Jumlah</label>
-                          <input id="quantity" x-model.number="quantity" type="text" name="quantity" class="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm py-1 px-2">
+                          <input id="quantity" x-model.number="quantity" type="text" name="qty" class="rounded-md border border-gray-300 text-left text-base font-medium text-gray-700 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm py-1 px-2 w-[50px]" placeholder="0">
                         </div>
                       </div>
+                      @error('qty')
+                      <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                      @enderror
                     </div>
                   </li>
                 </ul>
@@ -180,7 +203,7 @@
         return {
             quantity: 1,
             hargaProduk: {{ $produk->harga_produk }},
-            jenisPengiriman: 'darurat',
+            jenisPengiriman: 'reguler',
             shippingCosts: {
                 darurat: 50000,
                 reguler: 20000

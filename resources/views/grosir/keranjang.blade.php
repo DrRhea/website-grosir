@@ -111,7 +111,7 @@
               <div class="mt-6 text-sm text-center">
                 <p>
                   atau
-                  <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                  <a href="/grosir/produk" class="font-medium text-indigo-600 hover:text-indigo-500">
                     Lanjutkan Belanja
                     <span aria-hidden="true"> →</span>
                   </a>

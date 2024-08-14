@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_produk')->constrained('produks');
             $table->foreignId('id_grosir')->constrained('grosirs');
+            $table->foreignId('id_produk')->constrained('produks');
             $table->string('no_faktur');
             $table->integer('qty');
             $table->integer('total_harga');
-            $table->date('tanggal');
             $table->string('bukti_pembayaran');
+            $table->enum('jenis_pengiriman', ['darurat', 'reguler']);
             $table->enum('status', ['pending', 'berhasil', 'gagal'])->default('pending');
             $table->timestamps();
         });

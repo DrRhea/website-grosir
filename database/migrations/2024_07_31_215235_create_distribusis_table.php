@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('distribusis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_produk')->constrained('produks');
-            $table->foreignId('id_grosir')->constrained('grosirs');
-            $table->integer('qty');
-            $table->date('tanggal_pengiriman');
+            $table->foreignId('id_transaksi')->constrained('transaksis');
+            $table->string('no_resi')->nullable();
+            $table->date('tanggal_pengiriman')->nullable();
             $table->longText('keterangan_pengiriman')->nullable();
-            $table->enum('jenis_pengiriman', ['darurat', 'reguler'])->default('reguler');
-            $table->enum('status_pengiriman', ['diproses', 'dalam perjalanan', 'diterima'])->default('diproses');
+            $table->enum('status_pengiriman', ['gagal', 'diproses', 'dalam perjalanan', 'diterima'])->default('diproses');
             $table->timestamps();
         });
     }
